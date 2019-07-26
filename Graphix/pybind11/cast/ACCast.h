@@ -4,6 +4,7 @@
 #include	<pybind11/pybind11.h>
 #include	<pybind11/operators.h>
 #include	"UniString.hpp"
+#include "Array.hpp"
 
 namespace pybind11 {
 	namespace detail {
@@ -41,5 +42,8 @@ namespace pybind11 {
 
 			PYBIND11_TYPE_CASTER(GS::UniString, _(PYBIND11_STRING_NAME));
 		};
+		
+		template <typename Type> struct type_caster<GS::Array<Type>>
+			: array_caster<GS::Array<Type>>, Type, false> { };
 	}
 }
