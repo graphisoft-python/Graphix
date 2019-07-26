@@ -14,6 +14,13 @@
 //ListBoxUpdateEventContext
 
 
+GS::Array<float> ArrayCast(GS::Array<float> ary) {
+	for (auto &value : ary) {
+		value += 0.3;
+	}
+	return ary;
+}
+
 PYBIND11_MODULE(Graphix, m) {
 
 	m.def("version", []() {	return "version 0.0.1"; });
@@ -22,7 +29,7 @@ PYBIND11_MODULE(Graphix, m) {
 
 	// --- Test
 
-	
+	m.def("ArrayCast", ArrayCast);
 
 	// --- Add bindings end -------------------------------------------------------------------
 }
