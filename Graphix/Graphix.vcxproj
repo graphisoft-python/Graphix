@@ -154,7 +154,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="implementations\ClipFunc.hpp" />
     <ClInclude Include="implementations\DGNativeContextsFunc.hpp" />
+    <ClInclude Include="implementations\DisplayArcFunc.hpp" />
+    <ClInclude Include="implementations\FillEffectsFunc.hpp" />
+    <ClInclude Include="implementations\IBlitFunc.hpp" />
     <ClInclude Include="implementations\NativeContextBaseFunc.hpp" />
     <ClInclude Include="implementations\NativeContextFunc.hpp" />
     <ClInclude Include="stdafx.h" />

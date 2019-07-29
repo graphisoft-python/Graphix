@@ -33,6 +33,18 @@
     <ClInclude Include="implementations\NativeContextFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="implementations\IBlitFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\DisplayArcFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\FillEffectsFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\ClipFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

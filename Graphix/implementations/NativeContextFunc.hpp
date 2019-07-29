@@ -39,6 +39,7 @@ void load_NativeContextBase(py::module m) {
 		.export_values();
 
 	m_nativeContext
+		.def(py::init<NativeContextBase &>())
 		// --- Drawing functions
 		.def("SetForeColor", (void (NativeContext::*)(unsigned char, unsigned char, unsigned char, unsigned char))&NativeContext::SetForeColor,
 			py::arg("red"),
@@ -54,21 +55,30 @@ void load_NativeContextBase(py::module m) {
 		.def("SetBackColor", (void (NativeContext::*)(const Color &))&NativeContext::SetBackColor)
 		.def("SetLineWidth", &NativeContext::SetLineWidth)
 		.def("SetLineCap", &NativeContext::SetLineCap)
-		//.def("SetLineDashPattern", &NativeContext::SetLineDashPattern)
+		.def("SetLineDashPattern", &NativeContext::SetLineDashPattern)
 		.def("SetLinePatternOffset", &NativeContext::SetLinePatternOffset)
-		//.def("SetFillPattern", &NativeContext::SetFillPattern)
-		//.def("SetBlendMode", &NativeContext::SetBlendMode);
+		.def("SetFillPattern", &NativeContext::SetFillPattern)
+		.def("SetBlendMode", &NativeContext::SetBlendMode)
 
 		// --- Line drawing
 		.def("MoveTo", &NativeContext::MoveTo)
 		.def("LineTo", &NativeContext::LineTo)
-		//.def("ArcTo", &NativeContext::ArcTo)
-		//.def("Arc", &NativeContext::Arc)
+		.def("ArcTo", &NativeContext::ArcTo)
+		.def("Arc", &NativeContext::Arc)
 		.def("FrameRect", &NativeContext::FrameRect)
 
 		// --- Fill drawing
-		.def("FillRect", &NativeContext::FillRect,py::arg("left"), py::arg("top"), py::arg("right"), py::arg("bottom"), py::arg("red"), py::arg("green"), py::arg("blue"), py::arg("alpha")=255 )
-		//.def("BeginPolygon", &NativeContext::BeginPolygon)
+		.def("FillRect", &NativeContext::FillRect, 
+			py::arg("left"), 
+			py::arg("top"), 
+			py::arg("right"), 
+			py::arg("bottom"), 
+			py::arg("red"), 
+			py::arg("green"), 
+			py::arg("blue"), 
+			py::arg("alpha") = 255)
+		.def("BeginPolygon", &NativeContext::BeginPolygon,
+			py::arg("effect") = nullptr)
 		.def("EndPolygon", &NativeContext::EndPolygon)
 
 		// --- Text drawing
@@ -84,9 +94,17 @@ void load_NativeContextBase(py::module m) {
 		.def("RestoreClip", &NativeContext::RestoreClip)
 		.def("BeginClip", &NativeContext::BeginClip)
 		.def("EndClip", &NativeContext::EndClip)
-		//.def("SetClipToRect", &NativeContext::SetClipToRect)
+		.def("SetClipToRect", &NativeContext::SetClipToRect)
 		.def("SetClip", &NativeContext::SetClip)
 		.def("IsClipEmpty", &NativeContext::IsClipEmpty)
 
 		// --- Bitting
+
+
+		// Clear, etc.
+		.def("Clear", &NativeContext::Clear)
+		.def("GetCurrentPos", &NativeContext::GetCurrentPos)
+		.def("GetDirtyRect", &NativeContext::GetDirtyRect)
+		.def("GetRoundLineCoordinates", &NativeContext::GetRoundLineCoordinates)
+		.def("SetRoundLineCoordinates", &NativeContext::SetRoundLineCoordinates);
 }

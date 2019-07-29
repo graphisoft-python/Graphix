@@ -19,5 +19,5 @@ void load_NativeContextBase(py::module m) {
 		.def("InvalidateCaches", &NativeContextBase::InvalidateCaches);
 		//.def("GetDashImage", &NativeContextBase::GetDashImage)
 		//.def("GetPatternImage", &NativeContextBase::GetPatternImage)
-		//.def("CreateLowLevelContext", &NativeContextBase::CreateLowLevelContext);
+		//.def("CreateLowLevelContext", &NativeContextBase::CreateLowLevelContext,py::return_value_policy::reference);
 }
