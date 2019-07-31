@@ -6,7 +6,6 @@
 #include "DisplayArc.hpp"
 
 using namespace NewDisplay;
-using namespace GS;
 
 
 // --- DisplayArc ------------------------------------------------------------------------
@@ -34,9 +33,9 @@ void load_DisplayArc(py::module m) {
 		.def("Scale", &DisplayArc::Scale)
 		.def_static("CreateFullCircle", &DisplayArc::CreateFullCircle)
 		.def_static("CreateCircularArc", &DisplayArc::CreateCircularArc)
-		.def_static("CreateFullEllipse", (DisplayArc (*)(const Point<float> &, float, float)) &DisplayArc::CreateFullEllipse)
+		.def_static("CreateFullEllipse", (DisplayArc (*)(const GS::Point<float> &, float, float)) &DisplayArc::CreateFullEllipse)
 		.def_static("CreateFullEllipse", (DisplayArc (*)(float, float, float, float)) &DisplayArc::CreateFullEllipse)
 		.def_static("CreateEllipticArcWithEndPoints", &DisplayArc::CreateEllipticArcWithEndPoints)
-		.def_static("CreateEllipticArc", (DisplayArc (*)(const Point<float> &, float, float, float, float)) &DisplayArc::CreateEllipticArc)
+		.def_static("CreateEllipticArc", (DisplayArc (*)(const GS::Point<float> &, float, float, float, float)) &DisplayArc::CreateEllipticArc)
 		.def_static("CreateEllipticArc", (DisplayArc (*)(float, float, float, float, float, float)) &DisplayArc::CreateEllipticArc);
 }

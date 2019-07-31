@@ -84,6 +84,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
+    <OutDir>C:\Program Files\GRAPHISOFT\ARCHICAD 22\Add-Ons\GraphisoftPython\ACLibs\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,13 +103,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;GRAPHIX_EXPORTS;_WINDOWS;_USRDLL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\pybind11\cast;..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,13 +155,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="implementations\BlitEffectsFunc.hpp" />
     <ClInclude Include="implementations\ClipFunc.hpp" />
-    <ClInclude Include="implementations\DGNativeContextsFunc.hpp" />
     <ClInclude Include="implementations\DisplayArcFunc.hpp" />
     <ClInclude Include="implementations\FillEffectsFunc.hpp" />
     <ClInclude Include="implementations\IBlitFunc.hpp" />
     <ClInclude Include="implementations\NativeContextBaseFunc.hpp" />
     <ClInclude Include="implementations\NativeContextFunc.hpp" />
+    <ClInclude Include="implementations\NativeContextsFunc.hpp" />
+    <ClInclude Include="implementations\NativeImageFunc.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -176,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\Support\Modules\DGLib\Win\DGImp.LIB" />
+    <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB" />
     <Library Include="..\Support\Modules\GSRoot\Win\GSRootImp.LIB" />
     <Library Include="..\Support\Modules\GSUtils\Win\GSUtilsImp.LIB" />
     <Library Include="..\Support\Modules\InputOutput\Win\InputOutputImp.LIB" />

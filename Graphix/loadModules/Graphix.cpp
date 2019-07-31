@@ -3,33 +3,54 @@
 
 #include "..\stdafx.h"
 
-#include "DGWImageCache.hpp"
-#include "DGUtility.hpp"
+#include "../implementations/NativeImageFunc.hpp"
+#include "../implementations/NativeContextBaseFunc.hpp"
+#include "../implementations/IBlitFunc.hpp"
+#include "../implementations/DisplayArcFunc.hpp"
+#include "../implementations/FillEffectsFunc.hpp"
+#include "../implementations/ClipFunc.hpp"
+#include "../implementations/BlitEffectsFunc.hpp"
+#include "../implementations/NativeContextFunc.hpp"
+#include "../implementations/NativeContextsFunc.hpp"
 
-
-//NativeContext
-//
-//UserItemUpdateNativeContext
-//
-//ListBoxUpdateEventContext
-
-
-GS::Array<float> ArrayCast(GS::Array<float> ary) {
-	for (auto &value : ary) {
-		value += 0.3;
-	}
-	return ary;
-}
 
 PYBIND11_MODULE(Graphix, m) {
 
 	m.def("version", []() {	return "version 0.0.1"; });
 
-	// --- Add bindings here ------------------------------------------------------------------
+// --- Add bindings here ------------------------------------------------------------------
 
-	// --- Test
+	// --- NativeImage
+	load_NativeImage(m);
 
-	m.def("ArrayCast", ArrayCast);
+	// --- NativeContextBase
+	load_Filtering(m);
+	load_NativeContextBase(m);
 
-	// --- Add bindings end -------------------------------------------------------------------
+	// --- IBlit
+	load_BlendMode(m);
+
+	// --- DisplayArc
+	load_DisplayArc(m);
+
+	// --- FillEffects
+	load_FillEffect(m);
+	load_FillEffectEX(m);
+
+	// --- ClipFunc
+	load_Clip(m);
+
+	// --- BlitEffects
+	load_BlitEffect(m);
+	load_FalseColorBlitEffect(m);
+
+	// --- NativeContext
+	load_NativeContextEnum(m);
+	load_NativeContext(m);
+
+	// --- NativeContexts
+	//load_HDCContext(m);
+	//load_GdiplusGraphicsContext(m);
+
+// --- Add bindings end -------------------------------------------------------------------
 }

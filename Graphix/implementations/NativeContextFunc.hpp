@@ -5,7 +5,6 @@
 #include "NativeContext.hpp"
 
 using namespace NewDisplay;
-using namespace Gfx;
 
 
 // --- LineCapType and TextQuality ---------------------------------------------------------
@@ -27,7 +26,7 @@ void load_NativeContextEnum(py::module m) {
 
 // --- NativeContext -----------------------------------------------------------------------
 
-void load_NativeContextBase(py::module m) {
+void load_NativeContext(py::module m) {
 	py::class_<NativeContext, NativeContextBase>m_nativeContext(m, "NativeContext");
 
 	py::enum_<NativeContext::ExternalType>(m_nativeContext, "ExternalType")
@@ -41,18 +40,18 @@ void load_NativeContextBase(py::module m) {
 	m_nativeContext
 		.def(py::init<NativeContextBase &>())
 		// --- Drawing functions
-		.def("SetForeColor", (void (NativeContext::*)(unsigned char, unsigned char, unsigned char, unsigned char))&NativeContext::SetForeColor,
+		.def("SetForeColor", (void (NativeContext::*)(unsigned char, unsigned char, unsigned char, unsigned char)) &NativeContext::SetForeColor,
 			py::arg("red"),
 			py::arg("green"),
 			py::arg("blue"),
 			py::arg("alpha") = 255)
-		.def("SetForeColor", (void (NativeContext::*)(const Color &))&NativeContext::SetForeColor)
-		.def("SetBackColor", (void (NativeContext::*)(unsigned char, unsigned char, unsigned char, unsigned char))&NativeContext::SetBackColor,
+		.def("SetForeColor", (void (NativeContext::*)(const Gfx::Color &))&NativeContext::SetForeColor)
+		.def("SetBackColor", (void (NativeContext::*)(unsigned char, unsigned char, unsigned char, unsigned char)) &NativeContext::SetBackColor,
 			py::arg("red"),
 			py::arg("green"),
 			py::arg("blue"),
 			py::arg("alpha") = 255)
-		.def("SetBackColor", (void (NativeContext::*)(const Color &))&NativeContext::SetBackColor)
+		.def("SetBackColor", (void (NativeContext::*)(const Gfx::Color &))&NativeContext::SetBackColor)
 		.def("SetLineWidth", &NativeContext::SetLineWidth)
 		.def("SetLineCap", &NativeContext::SetLineCap)
 		.def("SetLineDashPattern", &NativeContext::SetLineDashPattern)
@@ -82,10 +81,19 @@ void load_NativeContextBase(py::module m) {
 		.def("EndPolygon", &NativeContext::EndPolygon)
 
 		// --- Text drawing
-		//.def("DrawUIText", &NativeContext::DrawUIText)
-		//.def("DrawPlainText", &NativeContext::DrawPlainText)
-		//.def("DrawPlainMLText", &NativeContext::DrawPlainMLText)
-		//.def("DrawPlainMLTextSafe", &NativeContext::DrawPlainMLTextSafe)
+		.def("DrawUIText", &NativeContext::DrawUIText)
+		.def("DrawPlainText", &NativeContext::DrawPlainText)
+		.def("DrawPlainMLText", &NativeContext::DrawPlainMLText)
+		.def("DrawPlainMLTextSafe", &NativeContext::DrawPlainMLTextSafe,
+			py::arg("uString"),
+			py::arg("iFont"), 
+			py::arg("just"), 
+			py::arg("top"), 
+			py::arg("left"), 
+			py::arg("width"), 
+			py::arg("height"), 
+			py::arg("angle"),
+			py::arg("textQuality") = TextQuality::TQ_SystemDefault)
 		//.def("DrawRichText", &NativeContext::DrawRichText)
 		//.def("GreekDrawRichText", &NativeContext::GreekDrawRichText)
 
@@ -99,7 +107,18 @@ void load_NativeContextBase(py::module m) {
 		.def("IsClipEmpty", &NativeContext::IsClipEmpty)
 
 		// --- Bitting
-
+		.def("DrawImage", &NativeContext::DrawImage,
+			py::arg("image"),
+			py::arg("scaleX"), 
+			py::arg("scaleY"), 
+			py::arg("rotation"), 
+			py::arg("translationX"), 
+			py::arg("translationY"), 
+			py::arg("transparent"), 
+			py::arg("alpha") = 1.0, 
+			py::arg("filtering") = Filtering::DefaultFilter,
+			py::arg("blitEffect") = nullptr)
+		//.def("Blit", &NativeContext::Blit)
 
 		// Clear, etc.
 		.def("Clear", &NativeContext::Clear)

@@ -5,13 +5,12 @@
 #include "FillEffects.hpp"
 
 using namespace NewDisplay;
-using namespace Gfx;
-using namespace GS;
 
 
 // --- FillEffect --------------------------------------------------------------------
 
 void load_FillEffect(py::module m) {
+	// --- FillEffect ----------------------------------------------------------------
 	py::class_<FillEffect>(m, "FillEffect");
 }
 
@@ -21,12 +20,12 @@ void load_FillEffect(py::module m) {
 void load_FillEffectEX(py::module m) {
 	// --- Linear Gradient effect ----------------------------------------------------
 	py::class_<LinearGradientFillEffect, FillEffect>(m, "LinearGradientFillEffect")
-		.def(py::init<Color, Color, Point<float> &, Point<float> &>());
+		.def(py::init< Gfx::Color, Gfx::Color, GS::Point<float> &, GS::Point<float> &>());
 
-	// --- Radial Gradient effect --------------------------------------------------
+	// --- Radial Gradient effect ----------------------------------------------------
 	py::class_<RadialGradientFillEffect, FillEffect>(m, "RadialGradientFillEffect")
-		.def(py::init<Color, Color, Point<float> &, double, double>());
+		.def(py::init<Gfx::Color, Gfx::Color, GS::Point<float> &, double, double>());
 
-	// --- Image effect ------------------------------------------------------------
+	// --- Image effect --------------------------------------------------------------
 	// wait for writting......
 }

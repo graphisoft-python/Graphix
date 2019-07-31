@@ -24,13 +24,13 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\DGNativeContextsFunc.hpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="implementations\NativeContextBaseFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="implementations\NativeContextFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\NativeImageFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="implementations\IBlitFunc.hpp">
@@ -43,6 +43,12 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="implementations\ClipFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\NativeContextsFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\BlitEffectsFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,6 +86,9 @@
       <Filter>libs</Filter>
     </Library>
     <Library Include="..\Support\Modules\UDLib\Win\UDImp.LIB">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB">
       <Filter>libs</Filter>
     </Library>
   </ItemGroup>
