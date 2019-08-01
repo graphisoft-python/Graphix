@@ -2,7 +2,6 @@
 
 #include "../stdafx.h"
 
-#include <fstream>
 #include "NativeImage.hpp"
 
 using namespace NewDisplay;
@@ -15,46 +14,31 @@ class PyNativeImage : NativeImage
 public:
 	using NativeImage::NativeImage;
 	
-	//PyNativeImage() {};
-
-	PyNativeImage(std::string file, UInt32 size, Encoding format) : NativeImage(OpenImage(), GetSize(), Getformat(file)) {
-		
-	};
+	PyNativeImage() : NativeImage() {};
+	PyNativeImage(UInt32 width, UInt32 height, NativeImage &imageForColorData, double resolutionFactor = 1.0) : NativeImage(width, height, imageForColorData, resolutionFactor) {};
+	PyNativeImage(std::string &file) : NativeImage(getData(), GetSize(), Getformat(file)) {};
 
 	~PyNativeImage() {
-		if(imgData != NULL){
+		if(imgData != nullptr){
 			delete[] imgData;
-			imgData = NULL;
+			imgData = nullptr;
 		}
 	};
 	
-	char* OpenImage() { return this->imgData; }
+	char* getData() { return this->imgData; };
 
-	UINT32 GetSize() { return this->imgSize; }
+	UINT32 GetSize() { return this->imgSize; };
 
 	// --- get image's length,buffer and format -------------------------------------------
-	NativeImage::Encoding Getformat(std::string file) {
-		std::ifstream is(file, std::ifstream::in);
-		is.seekg(0, is.end);												
-		this->imgSize = is.tellg();
-		is.seekg(0, is.beg);
+	NativeImage::Encoding Getformat(std::string &file) {
+		// wait for writting...
 
-		this->imgData = new char[imgSize];
-		is.read(imgData, imgSize);
-
-		std::string suffixStr = file.substr(file.find_last_of('.') + 1);
-		if (suffixStr == "JPEG" || suffixStr == "jpeg") {
-			return NativeImage::Encoding::JPEG;
-		}
-		else if (suffixStr == "PNG" || suffixStr == "png") {
-			return NativeImage::Encoding::PNG;
-		}
-	}
+		return NativeImage::Encoding::PNG;
+	};
 
 private:
 	char *imgData;
 	UINT32 imgSize;
-	//UINT32 imgFormat;
 };
 
 
@@ -69,13 +53,13 @@ void load_NativeImage(py::module m) {
 		.export_values();
 
 	m_nativeImage
-		//.def(py::init<>())
-		.def(py::init<UInt32, UInt32, NativeImage &, double>(),
+		.def(py::init_alias<>())
+		.def(py::init_alias<UInt32, UInt32, NativeImage &, double>(),
 			py::arg("width"),
 			py::arg("height"), 
 			py::arg("imageForColorData"), 
 			py::arg("resolutionFactor") = 1.0 )
-		.def(py::init_alias<std::string, UInt32, NativeImage::Encoding>())
+		.def(py::init_alias<std::string &>())
 		.def("GetWidth", &NativeImage::GetWidth)
 		.def("GetHeight", &NativeImage::GetHeight)
 		.def("GetResolutionFactor", &NativeImage::GetResolutionFactor)
