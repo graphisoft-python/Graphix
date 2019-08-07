@@ -19,6 +19,5 @@ void load_BlitEffect(py::module m) {
 
 void load_FalseColorBlitEffect(py::module m) {
 	py::class_<FalseColorBlitEffect, BlitEffect>(m, "FalseColorBlitEffect")
-		.def(py::init<Gfx::Color, Gfx::Color>())
-		.def("Clone", &FalseColorBlitEffect::Clone, py::return_value_policy::reference);
+		.def(py::init<Gfx::Color, Gfx::Color>());
 }

@@ -97,6 +97,7 @@ public:
 
 public:
 	ImageFillEffect (NativeImage& image, const double (&matrix)[6], WrapMode wrapModeHorizontal, WrapMode wrapModeVertical);
+	
 	ImageFillEffect () : image (nullptr), wrapModeHorizontal (Wrap), wrapModeVertical (Wrap) 
 	{
 		matrix[0] = matrix[1] = matrix[2] = matrix[3] = matrix[4] = matrix[5] = 0.0;

@@ -38,7 +38,6 @@ void load_NativeContext(py::module m) {
 		.export_values();
 
 	m_nativeContext
-		.def(py::init<NativeContextBase &>())
 		// --- Drawing functions
 		.def("SetForeColor", (void (NativeContext::*)(unsigned char, unsigned char, unsigned char, unsigned char)) &NativeContext::SetForeColor,
 			py::arg("red"),
@@ -67,15 +66,18 @@ void load_NativeContext(py::module m) {
 		.def("FrameRect", &NativeContext::FrameRect)
 
 		// --- Fill drawing
-		.def("FillRect", &NativeContext::FillRect, 
-			py::arg("left"), 
-			py::arg("top"), 
-			py::arg("right"), 
-			py::arg("bottom"), 
-			py::arg("red"), 
-			py::arg("green"), 
-			py::arg("blue"), 
+		.def("FillRect", &NativeContext::FillRect,
+			py::arg("left"),
+			py::arg("top"),
+			py::arg("right"),
+			py::arg("bottom"),
+			py::arg("red"),
+			py::arg("green"),
+			py::arg("blue"),
 			py::arg("alpha") = 255)
+		.def("FillRect", [](NativeContext &self, float left, float top, float right, float bottom, Gfx::Color &color) {
+			self.FillRect(left, top, right, bottom, color.GetRed(), color.GetGreen(), color.GetBlue(), color.GetAlpha());
+		})
 		.def("BeginPolygon", &NativeContext::BeginPolygon,
 			py::arg("effect") = nullptr)
 		.def("EndPolygon", &NativeContext::EndPolygon)

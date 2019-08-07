@@ -3,6 +3,7 @@
 #include "../stdafx.h"
 
 #include "NativeImage.hpp"
+#include "Color.hpp"
 
 using namespace NewDisplay;
 
@@ -64,8 +65,15 @@ void load_NativeImage(py::module m) {
 		.def("GetHeight", &NativeImage::GetHeight)
 		.def("GetResolutionFactor", &NativeImage::GetResolutionFactor)
 		.def("IsPerPixelAlpha", &NativeImage::IsPerPixelAlpha)
-		.def("GetColorKey", &NativeImage::GetColorKey)
-		.def("SetColorKey", &NativeImage::SetColorKey)
+		.def("GetColorKey", [](NativeImage &self) {
+			unsigned char red, green, blue;
+			self.GetColorKey(red, green, blue);
+			return new Gfx::Color(red, green, blue);
+	
+		})
+		.def("SetColorKey", [](NativeImage &self, Gfx::Color &color) {
+			self.SetColorKey(color.GetRed(), color.GetGreen(), color.GetBlue());
+		})
 		.def("GetContext", &NativeImage::GetContext)
 		.def("ReleaseContext", &NativeImage::ReleaseContext)
 		//.def("Encode", &NativeImage::Encode)
