@@ -16,7 +16,8 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/operators.h>
 
-#include "ACCast.h"
 #include "ACExport.h"
+#include "ACCast.h"
+#include "ACObserver.h"
 
 namespace py = pybind11;
