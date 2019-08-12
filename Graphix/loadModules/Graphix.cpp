@@ -21,7 +21,7 @@ PYBIND11_MODULE(Graphix, m) {
 // --- Add bindings here ------------------------------------------------------------------
 
 	// --- NativeImage
-	load_NativeImage(m);
+	auto native_image= init_NativeImage(m);
 
 	// --- NativeContextBase
 	load_Filtering(m);
@@ -47,6 +47,10 @@ PYBIND11_MODULE(Graphix, m) {
 	// --- NativeContext
 	load_NativeContextEnum(m);
 	load_NativeContext(m);
+
+
+	// --- NativeImage
+	load_NativeImage(native_image);
 
 	// --- NativeContexts
 	//load_HDCContext(m);
