@@ -12,6 +12,7 @@
 #include "../implementations/BlitEffectsFunc.hpp"
 #include "../implementations/NativeContextFunc.hpp"
 #include "../implementations/NativeContextsFunc.hpp"
+#include "../implementations/DGUtilityFunc.hpp"
 
 
 PYBIND11_MODULE(Graphix, m) {
@@ -52,6 +53,9 @@ PYBIND11_MODULE(Graphix, m) {
 	// --- NativeImage
 	load_NativeImage(native_image);
 
+
+	// --- DG Utils
+	load_DG_Utils(m);
 	// --- NativeContexts
 	//load_HDCContext(m);
 	//load_GdiplusGraphicsContext(m);
