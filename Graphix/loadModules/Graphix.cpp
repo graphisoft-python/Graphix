@@ -12,6 +12,7 @@
 #include "../implementations/BlitEffectsFunc.hpp"
 #include "../implementations/NativeContextFunc.hpp"
 #include "../implementations/NativeContextsFunc.hpp"
+#include "../implementations/DGUtilityFunc.hpp"
 
 
 PYBIND11_MODULE(Graphix, m) {
@@ -21,7 +22,7 @@ PYBIND11_MODULE(Graphix, m) {
 // --- Add bindings here ------------------------------------------------------------------
 
 	// --- NativeImage
-	load_NativeImage(m);
+	auto native_image= init_NativeImage(m);
 
 	// --- NativeContextBase
 	load_Filtering(m);
@@ -48,6 +49,13 @@ PYBIND11_MODULE(Graphix, m) {
 	load_NativeContextEnum(m);
 	load_NativeContext(m);
 
+
+	// --- NativeImage
+	load_NativeImage(native_image);
+
+
+	// --- DG Utils
+	load_DG_Utils(m);
 	// --- NativeContexts
 	//load_HDCContext(m);
 	//load_GdiplusGraphicsContext(m);

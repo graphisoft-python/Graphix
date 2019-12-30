@@ -5,62 +5,59 @@
 #include "NativeImage.hpp"
 #include "Color.hpp"
 
+#include "GXImage.hpp"
+
 using namespace NewDisplay;
 
+NativeImage _openNativeImage(GS::UniString &file, double resolutionFactor) {
+	ExportFuns *extFuncs = GetExtFuncs();
+	IO::RelativeLocation _relativePath(file);
+	IO::Location _appBaseDir = extFuncs->ApplicationPath();
+	_appBaseDir.AppendToLocal(_relativePath);
 
-// --- override NativeImage ---------------------------------------------------------------
+	GX::Image image(_appBaseDir);
 
-class PyNativeImage : NativeImage
-{
-public:
-	using NativeImage::NativeImage;
-	
-	PyNativeImage() : NativeImage() {};
-	PyNativeImage(UInt32 width, UInt32 height, NativeImage &imageForColorData, double resolutionFactor = 1.0) : NativeImage(width, height, imageForColorData, resolutionFactor) {};
-	PyNativeImage(std::string &file) : NativeImage(getData(), GetSize(), Getformat(file)) {};
-
-	~PyNativeImage() {
-		if(imgData != nullptr){
-			delete[] imgData;
-			imgData = nullptr;
-		}
-	};
-	
-	char* getData() { return this->imgData; };
-
-	UINT32 GetSize() { return this->imgSize; };
-
-	// --- get image's length,buffer and format -------------------------------------------
-	NativeImage::Encoding Getformat(std::string &file) {
-		// wait for writting...
-
-		return NativeImage::Encoding::PNG;
-	};
-
-private:
-	char *imgData;
-	UINT32 imgSize;
-};
+	if (image.IsEmpty()) {
+		throw py::value_error("Path Error.");
+	}
+	else {
+		return image.ToNativeImage(resolutionFactor);
+	}
+}
 
 
 // --- NativeImage ------------------------------------------------------------------------
 
-void load_NativeImage(py::module m) {
-	py::class_<NativeImage, PyNativeImage>m_nativeImage(m, "NativeImage"/*, pybind11::dynamic_attr()*/);
+py::class_< NativeImage> init_NativeImage(py::module m) {
+	py::class_<NativeImage> m_nativeImage(m, "NativeImage"/*, pybind11::dynamic_attr()*/);
 
-	py::enum_<NativeImage::Encoding>(m_nativeImage, "Encoding")
-		.value("JPEG", NativeImage::Encoding::JPEG)
-		.value("PNG", NativeImage::Encoding::PNG)
-		.export_values();
+	return m_nativeImage;
+}
+
+void load_NativeImage(py::class_< NativeImage> m_nativeImage) {
 
 	m_nativeImage
-		.def(py::init_alias<>())
-		.def(py::init_alias<UInt32, UInt32, NativeImage &, double>(),
+		.def(py::init<>())
+		.def(py::init<UInt32, UInt32, NativeImage &, double>(),
 			py::arg("width"),
 			py::arg("height"), 
 			py::arg("imageForColorData"), 
 			py::arg("resolutionFactor") = 1.0 )
-		.def(py::init_alias<std::string &>())
+		.def(py::init([](UInt32 width, UInt32 height, UInt32 bitDepth, bool perPixelAlpha = false, UInt32 bytesPerRow = 0, bool enableMemoryOptimization = true, double resolutionFactor = 1.0) {
+		return new NativeImage(width, height, bitDepth, nullptr, perPixelAlpha, bytesPerRow, enableMemoryOptimization, resolutionFactor);
+		}),py::arg("width"),
+			py::arg("height"),
+			py::arg("bitDepth"),
+			py::arg("perPixelAlpha")=false,
+			py::arg("bytesPerRow")=0,
+			py::arg("enableMemoryOptimization")=true,
+			py::arg("resolutionFactor")=1.0)
+		.def(py::init<>([](GS::UniString &file) {
+			return _openNativeImage(file, 1.0);
+		}))
+		.def(py::init<>([](GS::UniString &file,double resolutionFactor) {
+			return _openNativeImage(file, resolutionFactor);
+		}))
 		.def("GetWidth", &NativeImage::GetWidth)
 		.def("GetHeight", &NativeImage::GetHeight)
 		.def("GetResolutionFactor", &NativeImage::GetResolutionFactor)
@@ -76,7 +73,7 @@ void load_NativeImage(py::module m) {
 		})
 		.def("GetContext", &NativeImage::GetContext)
 		.def("ReleaseContext", &NativeImage::ReleaseContext)
-		//.def("Encode", &NativeImage::Encode)
 		.def("CreateCopy", &NativeImage::CreateCopy)
 		.def("Resize", &NativeImage::Resize);
+
 }

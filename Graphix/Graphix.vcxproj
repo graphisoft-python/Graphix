@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="implementations\BlitEffectsFunc.hpp" />
     <ClInclude Include="implementations\ClipFunc.hpp" />
+    <ClInclude Include="implementations\DGUtilityFunc.hpp" />
     <ClInclude Include="implementations\DisplayArcFunc.hpp" />
     <ClInclude Include="implementations\FillEffectsFunc.hpp" />
     <ClInclude Include="implementations\IBlitFunc.hpp" />
@@ -176,6 +177,7 @@
     <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB" />
     <Library Include="..\Support\Modules\GSRoot\Win\GSRootImp.LIB" />
     <Library Include="..\Support\Modules\GSUtils\Win\GSUtilsImp.LIB" />
+    <Library Include="..\Support\Modules\GXImage\Win\GXImageImp.LIB" />
     <Library Include="..\Support\Modules\InputOutput\Win\InputOutputImp.LIB" />
     <Library Include="..\Support\Modules\TextEngine\Win\TextEngineImp.LIB" />
     <Library Include="..\Support\Modules\UCLib\Win\UCImp.LIB" />
