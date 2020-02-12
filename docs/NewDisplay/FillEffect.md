@@ -1,0 +1,5 @@
+# Class FillEffect
+
+## Inherit
+
+* Object

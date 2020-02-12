@@ -1,0 +1,4 @@
+# Enum BlendMode
+
+* SrcBlend
+* SrcCopy
