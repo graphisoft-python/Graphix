@@ -11,22 +11,22 @@
 
 ```
 IsFullEllipse(self) -> bool
-GetCenter(self) -> GSRoot.FloatPoint
-GetBegCoordinate(self) -> GSRoot.FloatPoint
-GetEndCoordinate(self) -> GSRoot.FloatPoint
+GetCenter(self) -> GSRoot.Point
+GetBegCoordinate(self) -> GSRoot.Point
+GetEndCoordinate(self) -> GSRoot.Point
 GetBegAngle(self) -> float
 GetEndAngle(self) -> float
 GetDeltaAngle(self) -> float
 GetXRadius(self) -> float
 GetYRadius(self) -> float
-GetFullEllipseBoundingRect(self) -> GSRoot.FloatRect
-GetSegmentation(self, int) -> List[GSRoot.FloatPoint]
-Scale(self,float) -> Graphix.DisplayArc
-CreateFullCircle(GSRoot.FloatPoint,float) -> Graphix.DisplayArc
-CreateCircularArc(GSRoot.FloatPoint,float,float,float) -> Graphix.DisplayArc
-CreateFullEllipse(GSRoot.FloatPoint,float,float) -> Graphix.DisplayArc
-CreateFullEllipse(float,float,float,float) -> Graphix.DisplayArc
-CreateEllipticArcWithEndPoints(GSRoot.FloatPoint,float,float,GSRoot.FloatPoint,GSRoot.FloatPoint,Graphix.DisplayArc.Reflection) -> Graphix.DisplayArc
-CreateEllipticArc(GSRoot.FloatPoint, float, float, float, float) -> Graphix.DisplayArc
-CreateEllipticArc(float,float,float,float,float,float) -> Graphix.DisplayArc
+GetFullEllipseBoundingRect(self) -> GSRoot.Rect
+GetSegmentation(self, int) -> List[GSRoot.Point]
+Scale(self, float) -> Graphix.DisplayArc
+CreateFullCircle(GSRoot.Point, float) -> Graphix.DisplayArc
+CreateCircularArc(GSRoot.Point, float, float, float) -> Graphix.DisplayArc
+CreateFullEllipse(GSRoot.Point, float, float) -> Graphix.DisplayArc
+CreateFullEllipse(float, float, float, float) -> Graphix.DisplayArc
+CreateEllipticArcWithEndPoints(GSRoot.Point, float, float,GSRoot.Point ,GSRoot.Point, Graphix.DisplayArc.Reflection) -> Graphix.DisplayArc
+CreateEllipticArc(GSRoot.Point, float, float, float, float) -> Graphix.DisplayArc
+CreateEllipticArc(float, float, float, float, float, float) -> Graphix.DisplayArc
 ```

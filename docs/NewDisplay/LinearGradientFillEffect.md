@@ -7,5 +7,5 @@
 ## Methods
 
 ```
-__init__(self,GSRoot.Color,GSRoot.Color,GSRoot.FloatPoint,GSRoot.FloatPoint) -> None
+__init__(self,GSRoot.Color,GSRoot.Color, GSRoot.Point, GSRoot.Point) -> None
 ```

@@ -13,10 +13,10 @@ Begin(self) -> None
 MoveTo(self,float,float) -> None
 LineTo(self,float,float) -> None
 End(self) -> None
-SetToRect(self,GSRoot.FloatRect) -> None
+SetToRect(self, GSRoot.Rect) -> None
 IsRect(self) -> bool
 IsEmpty(self) -> bool
 IsNull(self) -> bool
-GetBoundRect(self) -> RGSRoot.FloatRectect
-GetClipPolyData(self,List[GSRoot.FloatPoint],List[int]) -> None
+GetBoundRect(self) -> GSRoot.Rect
+GetClipPolyData(self, List[GSRoot.Point],List[int]) -> None
 ```

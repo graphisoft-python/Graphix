@@ -32,8 +32,8 @@ EndPolygon(self) -> None
 FillRect(self, float, float, float, float, int, int, int, int = 255) -> None
 FillRect(self, float, float, float, float, GSRoot.Color) -> None
 FrameRect(self, float, float, float, float) -> None
-GetCurrentPos(self) -> GSRoot.FloatPoint
-GetDirtyRect(self) -> GSRoot.FloatRect
+GetCurrentPos(self) -> GSRoot.Point
+GetDirtyRect(self) -> GSRoot.Rect
 GetRoundLineCoordinates(self) -> bool
 IsClipEmpty(self) -> bool
 LineTo(self, float, float) -> None
@@ -44,7 +44,7 @@ SetBackColor(self, int, int, int, int = 255) -> None
 SetBackColor(self, GSRoot.Color) -> None
 SetBlendMode(self, Graphix.BlendMode) -> None
 SetClip(self, Graphix.Clip) -> None
-SetClipToRect(self, GSRoot.FloatRect) -> None
+SetClipToRect(self, GSRoot.Rect) -> None
 SetFillPattern(self, GSRoot.Pattern) -> None
 SetForeColor(self, int, int, int, int = 255) -> None
 SetForeColor(self, GSRoot.Color) -> None
