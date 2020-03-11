@@ -14,5 +14,5 @@
 ## Methods
 
 ```
-__init__(self,Graphix.NativeImage,List[float],Graphix.ImageFillEffect.WrapMode,Graphix.ImageFillEffect.WrapMode) -> None
+__init__(self,Graphix.NativeImage,List[float], Graphix.ImageFillEffect.WrapMode, Graphix.ImageFillEffect.WrapMode) -> None
 ```

@@ -17,10 +17,10 @@
 ## Methods
 
 ```
-Arc(self,Graphix.DisplayArc) -> None
-ArcTo(self,Graphix.DisplayArc) -> None
+Arc(self, Graphix.DisplayArc) -> None
+ArcTo(self, Graphix.DisplayArc) -> None
 BeginClip(self) -> None
-BeginPolygon(self,Graphix.FillEffect = None) -> None
+BeginPolygon(self, Graphix.FillEffect = None) -> None
 Clear(self) -> None
 DrawImage(self, Graphix.NativeImage, float, float, float, float, float, bool, float = 1.0, Graphix.Filtering = Filtering.Bilinear, Graphix.BlitEffect = None) -> None
 DrawPlainMLText(self, unicode,TextEngine.IFont, int, float, float, float, float, float) -> None
